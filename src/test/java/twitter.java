@@ -3,12 +3,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+import java.util.List;
 
 public class twitter {
 // Hallo
     //gleichfalls
     // danke
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+
 
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
@@ -22,14 +26,45 @@ public class twitter {
 
         signIn.click();
 
-        WebElement nameTextBox = driver.findElement(By.xpath("(//div[@class='css-1dbjc4n r-18u37iz r-16y2uox r-1wbh5a2 r-1wzrnnt r-1udh08x r-xd6kpl r-1pn2ns4 r-ttdzmv'])[1]"));
-        WebElement phoneTextBox = driver.findElement(By.xpath("(//div[@class='css-1dbjc4n r-18u37iz r-16y2uox r-1wbh5a2 r-1wzrnnt r-1udh08x r-xd6kpl r-1pn2ns4 r-ttdzmv'])[2]"));
-        WebElement withEail= driver.findElement(By.xpath("//div[@class='css-18t94o4 css-901oao r-k200y r-1cvl2hr r-37j5jr r-a023e6 r-16dba41 r-rjixqe r-1wzrnnt r-bcqeeo r-qvutc0']"));
+        Thread.sleep(1000);
 
-        nameTextBox.sendKeys("Ahmet");
-        withEail.click();
+        WebElement name = driver.findElement(By.xpath("(//input[@name='name'])[1]"));
+        name.sendKeys("Ahmet");
 
-        //driver.close();
+        //WebElement email = driver.findElement(By.xpath("//div[@class='css-18t94o4 css-901oao r-k200y r-1cvl2hr r-37j5jr r-a023e6 r-16dba41 r-rjixqe r-1wzrnnt r-bcqeeo r-qvutc0']"));
+        WebElement month = driver.findElement(By.id("SELECTOR_1"));
+        List <WebElement> dropDown = driver.findElements(By.xpath("//div[@class='css-1dbjc4n r-14lw9ot r-1ets6dv r-z2wwpe r-rs99b7 r-16xksha r-1b7u577']"));
+        //email.click();
+        WebElement day = driver.findElement(By.id("SELECTOR_2"));
+
+        Select selectDay = new Select(day);
+        selectDay.selectByVisibleText("25");
+
+        for (WebElement w:dropDown
+             ) {
+            System.out.printf(w.getText());
+        }
+        Thread.sleep(1000);
+        Select select = new Select(month);
+        Thread.sleep(1000);
+        select.selectByVisibleText("May");
+
+        System.out.println();
+        WebElement year = driver.findElement(By.id("SELECTOR_3"));
+        List <WebElement> years = driver.findElements(By.id("SELECTOR_3"));
+
+
+        for (WebElement w:years
+             ) {
+            System.out.println(w.getText());
+        }
+
+        Select selectYear = new Select(year);
+        selectYear.selectByVisibleText("2000");
+
+
+        Thread.sleep(1000);
+        driver.close();
 
 
     }
