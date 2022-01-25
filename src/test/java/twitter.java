@@ -6,6 +6,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class twitter {
 // Hallo
+    //gleichfalls
+    // danke
     public static void main(String[] args) {
 
         WebDriverManager.chromedriver().setup();
